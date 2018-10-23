@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>python3学习——注册机的实现 | Sail的日记本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言这个注册机本来是用java写的的，但是在完成后收到了新的需求————添加gui。作为一个被java gui坑过一次的人，我绝不愿意再被坑第二次，而我手头又没装vs，所以便选择据说开发效率极高的python。一边学一边做，开发过程虽说磕磕碰碰但是最后也算是顺利完成了，贴到网上，既是分享也是备忘。
+整个项目主要用到了tkinter,pyDes,rsa,multiprocessing等库。tkint">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python3学习——注册机的实现">
+<meta property="og:url" content="http://woodensail.github.io/2014/12/10/python3-e5-ad-a6-e4-b9-a0-e6-b3-a8-e5-86-8c-e6-9c-ba-e7-9a-84-e5-ae-9e-e7-8e-b0/index.html">
+<meta property="og:site_name" content="Sail的日记本">
+<meta property="og:description" content="前言这个注册机本来是用java写的的，但是在完成后收到了新的需求————添加gui。作为一个被java gui坑过一次的人，我绝不愿意再被坑第二次，而我手头又没装vs，所以便选择据说开发效率极高的python。一边学一边做，开发过程虽说磕磕碰碰但是最后也算是顺利完成了，贴到网上，既是分享也是备忘。
+整个项目主要用到了tkinter,pyDes,rsa,multiprocessing等库。tkint">
+<meta property="og:updated_time" content="2016-05-06T04:16:13.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python3学习——注册机的实现">
+<meta name="twitter:description" content="前言这个注册机本来是用java写的的，但是在完成后收到了新的需求————添加gui。作为一个被java gui坑过一次的人，我绝不愿意再被坑第二次，而我手头又没装vs，所以便选择据说开发效率极高的python。一边学一边做，开发过程虽说磕磕碰碰但是最后也算是顺利完成了，贴到网上，既是分享也是备忘。
+整个项目主要用到了tkinter,pyDes,rsa,multiprocessing等库。tkint">
+  
+    <link rel="alternative" href="/atom.xml" title="Sail的日记本" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Sail</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JVM/" style="font-size: 12px;">JVM</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/PythonChallenge/" style="font-size: 10px;">PythonChallenge</a> <a href="/tags/bootstrap/" style="font-size: 12px;">bootstrap</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/j2ee/" style="font-size: 10px;">j2ee</a> <a href="/tags/jQuery/" style="font-size: 12px;">jQuery</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaScript/" style="font-size: 14px;">javaScript</a> <a href="/tags/keygen/" style="font-size: 10px;">keygen</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/rsa/" style="font-size: 10px;">rsa</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/数据分析/" style="font-size: 18px;">数据分析</a> <a href="/tags/每日一题/" style="font-size: 14px;">每日一题</a> <a href="/tags/游戏/" style="font-size: 12px;">游戏</a> <a href="/tags/练习/" style="font-size: 16px;">练习</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Sail</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Sail</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-python3-e5-ad-a6-e4-b9-a0-e6-b3-a8-e5-86-8c-e6-9c-ba-e7-9a-84-e5-ae-9e-e7-8e-b0" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/10/python3-e5-ad-a6-e4-b9-a0-e6-b3-a8-e5-86-8c-e6-9c-ba-e7-9a-84-e5-ae-9e-e7-8e-b0/" class="article-date">
+  	<time datetime="2014-12-10T06:04:21.000Z" itemprop="datePublished">2014-12-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python3学习——注册机的实现
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/keygen/">keygen</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rsa/">rsa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/加密/">加密</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/python/">python</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这个注册机本来是用java写的的，但是在完成后收到了新的需求————添加gui。作为一个被java gui坑过一次的人，我绝不愿意再被坑第二次，而我手头又没装vs，所以便选择据说开发效率极高的python。<br>一边学一边做，开发过程虽说磕磕碰碰但是最后也算是顺利完成了，贴到网上，既是分享也是备忘。</p>
+<p>整个项目主要用到了tkinter,pyDes,rsa,multiprocessing等库。tkinter用于实现gui。pyDes用于对key文件加密。multiprocessing用于实现多线程素性测试以提高rsaKey的生成效率。而最关键的则是rsa库了，但是事实上最后的版本中是没有引入rsa库的，原因是rsa库在打包过程中出现了问题，所以我参考rsa库和网上的一篇论文实现了一个简单myrsa库。</p>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><h3 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h3><p>一个相当简陋的对话框带着四个同样简陋的按钮。<br>生成授权：接受用户输入的授权信息包括机器码，授权开始结束日期等<br>选择密钥：选择授权时所使用的key<br>创建密钥：随机生成rsaKey<br>导出公钥：导出rsa算法中的e和n，这两个参数需要写死在被保护的程序的验证模块中<br>[python]<br>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>    root = Tk()<br>    Button(root, text=’生成授权’, relief=RAISED, command=register).pack()<br>    Button(root, text=’选择密钥’, relief=RAISED, command=select_key).pack()<br>    Button(root, text=’创建密钥’, relief=RAISED, command=create_key).pack()<br>    Button(root, text=’导出公钥’, relief=RAISED, command=get_pubkey).pack()<br>    root.mainloop()<br>[/python]</p>
+<h3 id="创建密钥"><a href="#创建密钥" class="headerlink" title="创建密钥"></a>创建密钥</h3><p>首先接受用户输入的密钥位数和密钥别名，然后调用myrsa库中的newkeys生成密钥，myrsa会根据当前机器的cpu核心数量开启相应数量的线程进行计算。「此处没有对length最大最小值进行约束，存在安全隐患」<br>密钥生成完毕后会调用save_key进行保存。程序将在key文件下下根据用户输入的别名生成一个文件夹，然后用文件头部的_des_key对密钥对加密，最后保存为pub.key和pri.key。加入des算法是因为注册机与key文件分离，为了防止key文件流出导致第三方任意授权所以对key进行加密。加入des后必须有key文件保存时所用的_des_key否则无法读取key文件。<br>此外，程序还会向同目录下生成一个xml文件保存key的别名、位数和kid，其中kid可写入被保护程序，用于判断授权文件所使用的key。<br>[python]<br>def create_key():<br>    length = simpledialog.askinteger(root, &quot;请输入密钥长度&quot;)<br>    remark = simpledialog.askstring(root, &quot;输入密钥名称&quot;)<br>    (pubkey, prikey) = newkeys(length)<br>    config = configparser.ConfigParser()<br>    config.add_section(‘info’)<br>    config.set(‘info’, ‘length’, str(length))<br>    save_key(pubkey, prikey, config, remark)<br>    messagebox.showinfo(&quot;&quot;, &quot;密钥生成完毕&quot;)</p>
+<p>def save_key(pubkey, prikey, config, remark):<br>    pub = pubkey.save_pkcs1()<br>    pri = prikey.save_pkcs1()<br>    encrypter = des(&quot;DESCRYPT&quot;, CBC, _des_key, pad=None, padmode=PAD_PKCS5)</p>
+<pre><code>time_stamp = int(time.time() * 1000)
+if os.path.exists(&apos;key/&apos; + remark):
+    i = 1
+    while os.path.exists(&apos;key/&apos; + remark + &apos;_&apos; + str(i)):
+        i += 1
+    remark = remark + &apos;_&apos; + str(i)
+config.set(&apos;info&apos;, &apos;kid&apos;, str(time_stamp))
+e_pub = encrypter.encrypt(pub)
+e_pri = encrypter.encrypt(pri)
+
+file_prefix = &apos;key/&apos; + remark
+os.makedirs(file_prefix)
+with open(file_prefix + &apos;/info.ini&apos;, &apos;w&apos;) as f:
+    config.write(f)
+with open(file_prefix + &apos;/pub.key&apos;, &apos;wb&apos;) as f:
+    f.write(e_pub)
+with open(file_prefix + &apos;/pri.key&apos;, &apos;wb&apos;) as f:
+    f.write(e_pri)
+</code></pre><p>[/python]</p>
+<h3 id="选择密钥"><a href="#选择密钥" class="headerlink" title="选择密钥"></a>选择密钥</h3><p>之前的控制台版可以列出所有密钥进行选择，gui版本只做了根据用户输入寻找key文件夹然后写入配置文件。<br>[python]<br>def select_key():<br>    key_dir = filedialog.askdirectory()<br>    if None == key_dir:<br>        return<br>    config = configparser.ConfigParser()<br>    config.read(‘config.ini’)<br>    if not config.has_section(‘info’):<br>        config.add_section(‘info’)<br>    config.set(‘info’, ‘current_key’, key_dir)<br>    with open(‘config.ini’, ‘w’) as f:<br>        config.write(f)<br>[/python]</p>
+<h3 id="导出公钥"><a href="#导出公钥" class="headerlink" title="导出公钥"></a>导出公钥</h3><p>这里和上面的选择密钥原本在控制台版中都属于密钥管理的功能，为了适应gui做了弱化，会读取当前选择的key然后将kid,n,e写入指定的配置文件。<br>[python]<br>def get_pubkey():<br>    key_dir = filedialog.askdirectory()<br>    (pubkey, prikey, config) = load_key(key_dir)<br>    name = filedialog.asksaveasfilename(defaultextension=’.ini’, initialfile=’pubkey’,<br>                                        initialdir=’’, filetypes=[(‘公钥’, ‘.ini’)])<br>    pubkey_cfg = configparser.ConfigParser()<br>    pubkey_cfg.add_section(‘pubkey’)<br>    pubkey_cfg.set(‘pubkey’, ‘kid’, config.get(‘info’, ‘kid’))<br>    pubkey_cfg.set(‘pubkey’, ‘n’, str(getattr(pubkey, ‘n’)))<br>    pubkey_cfg.set(‘pubkey’, ‘e’, str(getattr(pubkey, ‘e’)))<br>    with open(name, ‘w’) as f:<br>        pubkey_cfg.write(f)<br>[/python]</p>
+<h3 id="生成授权"><a href="#生成授权" class="headerlink" title="生成授权"></a>生成授权</h3><p>首先会读取配置文件获得当前的key，然后接受用户输入的授权信息并拼接成json串，最后调用_encrypt加密。加密完后会进行解密与原信息比对如果无法通过校验会提示密钥可能失效。<br>最后新建一个二进制文件在前8位写入kid，然后写入加密后的授权信息<br>[python]<br>def register():<br>    if not os.path.exists(‘config.ini’):<br>        select_key()<br>        print(1)<br>    config = configparser.ConfigParser()<br>    config.read(‘config.ini’)<br>    try:<br>        current_key = config.get(‘info’, ‘current_key’)<br>        print(current_key)<br>        load_key(current_key)<br>        print(3)<br>    except Exception:<br>        select_key()<br>        current_key = config.get(‘info’, ‘current_key’)</p>
+<pre><code>code = simpledialog.askstring(root, &apos;请输入机器码&apos;)
+begin_str = simpledialog.askstring(root, &apos;请输入授权开始日期(yyyy-MM-dd)&apos;)
+end_str = simpledialog.askstring(root, &apos;请输入授权结束日期(yyyy-MM-dd)&apos;)
+count = simpledialog.askstring(root, &apos;请输入客户端数量&apos;)
+name = filedialog.asksaveasfilename(defaultextension=&apos;.license&apos;, initialdir=&apos;&apos;, initialfile=str(int(time.time())),
+                                    filetypes=[(&apos;授权文件&apos;, &apos;.license&apos;)])
+reg_info = {}
+if not None == code:
+    reg_info[&apos;code&apos;] = code
+if not None == begin_str:
+    begin_date = time.strptime(begin_str, &amp;quot;%Y-%m-%d&amp;quot;)
+    reg_info[&apos;beginDate&apos;] = int(time.mktime(begin_date) * 1000)
+if not None == end_str:
+    end_date = time.strptime(end_str, &amp;quot;%Y-%m-%d&amp;quot;)
+    reg_info[&apos;endDate&apos;] = int(time.mktime(end_date) * 1000)
+if not None == count:
+    reg_info[&apos;count&apos;] = count
+json = JSONEncoder().encode(reg_info)
+
+(pubkey, prikey, config) = load_key(current_key)
+e = getattr(prikey, &apos;e&apos;)
+d = getattr(prikey, &apos;d&apos;)
+setattr(prikey, &apos;e&apos;, d)
+setattr(prikey, &apos;d&apos;, e)
+setattr(pubkey, &apos;e&apos;, d)
+e_json = _encrypt(json.encode(), pubkey)
+d_json = _decrypt(e_json, prikey)
+
+if not json.encode() == d_json:
+    print(&amp;quot;校验失败，密钥可能损坏。请确认license是否有效&amp;quot;)
+
+with open(name, &apos;wb&apos;) as f:
+    f.write(struct.pack(&apos;&amp;gt;q&apos;, int(config.get(&apos;info&apos;, &apos;kid&apos;))))
+    f.write(e_json)
+</code></pre><p>[/python]</p>
+<h3 id="验证部分"><a href="#验证部分" class="headerlink" title="验证部分"></a>验证部分</h3><p>关于被保护的程序中的验证部分这里以java举例，需要将导出公钥中得到的e,d,kid以常量形式写入程序，如果对不同版本需要隔离只需要修改常量即可。<br>在验证部分会读取指定文件，然后读取前八位与常量kid比较如果不同则认为授权与软件版本不匹配，如果相同则利用常量n和e生成公钥对剩余部分进行解密。解密后得到授权信息开始对机器码等参数进行验证并返回结果。<br>[java]<br>private static final String modulus = &quot;<strong><em>&quot;;<br>private static final String publicExponent = &quot;65537&quot;;<br>private static final long kid = </em></strong>L;</p>
+<p>try (DataInputStream in = new DataInputStream(new BufferedInputStream(<br>    new FileInputStream(file)))) {</p>
+<pre><code>Long licenseKid = in.readLong();
+if (kid != licenseKid) {
+    return false;
+}
+byte[] license = new byte[(int) file.length() - 8];
+in.read(license);
+
+RSAPublicKey pubKey = (RSAPublicKey) KeyFactory.getInstance(&amp;quot;RSA&amp;quot;)
+    .generatePublic(
+        new RSAPublicKeySpec(new BigInteger(modulus),
+            new BigInteger(publicExponent)));
+
+String licenseJsonString = RSAUtil.decryptByPublicKey(
+    RSAUtil.bcd2Str(license), pubKey);
+JSONObject jsonObject = (JSONObject) new JSONParser()
+    .parse(licenseJsonString);
+
+String code = (String) jsonObject.get(&amp;quot;code&amp;quot;);
+if (null != code &amp;amp;&amp;amp; !getSigarSequence().equals(code)) {
+    return false;
+}
+Long beginDate = (Long) jsonObject.get(&amp;quot;beginDate&amp;quot;);
+if (null != beginDate &amp;amp;&amp;amp; beginDate &amp;gt; new Date().getTime()) {
+    return false;
+}
+Long endDate = (Long) jsonObject.get(&amp;quot;endDate&amp;quot;);
+if (null != endDate &amp;amp;&amp;amp; endDate &amp;lt; new Date().getTime()) {
+    return false;
+}
+Object o = jsonObject.get(&amp;quot;count&amp;quot;);
+Integer count = o instanceof String ? Integer.valueOf((String) o)
+    : (Integer) o;
+if (null != count) {
+    //TODO 设置客户端数量
+}
+return true;
+</code></pre><p>} catch (Exception e) {<br>    e.printStackTrace();<br>    return false;<br>}<br>[/java]</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总的来说虽然在学习python方面花了不少时间，但是python的开发效率的确很高，对同类元素的高度整合使得python开发的过程中用于很少为了「哪一种方案更好」这种事而浪费时间。虽然执行效率偏低，但是这对于一些轻量级的工具应用而言，省下来的开发时间远比程序执行所花费的时间来的多，的确是开发各种小工具的首选。</p>
+<p>另外，上面提到过rsa无法打包的问题，附件中已经用我自己实现的库代替了rsa，源代码下载后可以使用cxfreeze打包为exe文件。</p>
+<p><a href="http://www.woodensail.tk/archives/26/reg" target="_blank" rel="external">python3实现注册机源码</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/11/python-e6-af-8f-e6-97-a5-e4-b8-80-e9-a2-98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Python每日一题 第1期
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Sail
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>数据分析S107：完成微信运营评估模型 | Sail的日记本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[python]author = ‘sail’import pandas as pdfrom functools import reduceimport matplotlib.pyplot as plt
+def analyse():
+# 该函数用于将一个dataFrame合并为一条记录
+# 入参x为一个dataFrame，调用tt对每个Series分别进行合并
+def t(x):
+    retu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据分析S107：完成微信运营评估模型">
+<meta property="og:url" content="http://woodensail.github.io/2015/04/12/e6-95-b0-e6-8d-ae-e5-88-86-e6-9e-90s107-ef-bc-9a-e5-ae-8c-e6-88-90-e5-be-ae-e4-bf-a1-e8-bf-90-e8-90-a5-e8-af-84-e4-bc-b0-e6-a8-a1-e5-9e-8b/index.html">
+<meta property="og:site_name" content="Sail的日记本">
+<meta property="og:description" content="[python]author = ‘sail’import pandas as pdfrom functools import reduceimport matplotlib.pyplot as plt
+def analyse():
+# 该函数用于将一个dataFrame合并为一条记录
+# 入参x为一个dataFrame，调用tt对每个Series分别进行合并
+def t(x):
+    retu">
+<meta property="og:updated_time" content="2016-05-06T04:16:13.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据分析S107：完成微信运营评估模型">
+<meta name="twitter:description" content="[python]author = ‘sail’import pandas as pdfrom functools import reduceimport matplotlib.pyplot as plt
+def analyse():
+# 该函数用于将一个dataFrame合并为一条记录
+# 入参x为一个dataFrame，调用tt对每个Series分别进行合并
+def t(x):
+    retu">
+  
+    <link rel="alternative" href="/atom.xml" title="Sail的日记本" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Sail</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JVM/" style="font-size: 12px;">JVM</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/PythonChallenge/" style="font-size: 10px;">PythonChallenge</a> <a href="/tags/bootstrap/" style="font-size: 12px;">bootstrap</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/j2ee/" style="font-size: 10px;">j2ee</a> <a href="/tags/jQuery/" style="font-size: 12px;">jQuery</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaScript/" style="font-size: 14px;">javaScript</a> <a href="/tags/keygen/" style="font-size: 10px;">keygen</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/rsa/" style="font-size: 10px;">rsa</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/数据分析/" style="font-size: 18px;">数据分析</a> <a href="/tags/每日一题/" style="font-size: 14px;">每日一题</a> <a href="/tags/游戏/" style="font-size: 12px;">游戏</a> <a href="/tags/练习/" style="font-size: 16px;">练习</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Sail</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Sail</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-e6-95-b0-e6-8d-ae-e5-88-86-e6-9e-90s107-ef-bc-9a-e5-ae-8c-e6-88-90-e5-be-ae-e4-bf-a1-e8-bf-90-e8-90-a5-e8-af-84-e4-bc-b0-e6-a8-a1-e5-9e-8b" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/12/e6-95-b0-e6-8d-ae-e5-88-86-e6-9e-90s107-ef-bc-9a-e5-ae-8c-e6-88-90-e5-be-ae-e4-bf-a1-e8-bf-90-e8-90-a5-e8-af-84-e4-bc-b0-e6-a8-a1-e5-9e-8b/" class="article-date">
+  	<time datetime="2015-04-12T08:15:55.000Z" itemprop="datePublished">2015-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据分析S107：完成微信运营评估模型
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据分析/">数据分析</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/python/">python</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[python]<br><strong>author</strong> = ‘sail’<br>import pandas as pd<br>from functools import reduce<br>import matplotlib.pyplot as plt</p>
+<p>def analyse():</p>
+<pre><code># 该函数用于将一个dataFrame合并为一条记录
+# 入参x为一个dataFrame，调用tt对每个Series分别进行合并
+def t(x):
+    return x.apply(tt)
+
+# 该函数用于对一个Series进行合并,入参x为一个Series
+def tt(x):
+    # 当x为标题时用reduce调用lcs函数求从字符串头开始的最长公共子串
+    if x.name == &apos;标题&apos;:
+        return reduce(lcs, x)
+    # 当x为下列内容是取最后一项
+    elif x.name in {&apos;日期&apos;, &apos;粉丝数&apos;}:
+        return x[-1]
+    # 其他情况时对将x中所有数据合并为一组求和，并返回该组求和结果
+    else:
+        return x.groupby(lambda x: 1).sum().values[0]
+
+def lcs(x, y):
+    for i in range(min(len(y), len(x))):
+        if x[i] != y[i]:
+            break
+    else:
+        i += 1
+    return x[:i]
+
+df = pd.ExcelFile(r&amp;quot;resource/wxgzhdata.xlsx&amp;quot;).parse(u&amp;quot;3月&amp;quot;)
+df.insert(0, &apos;标题&apos;, df[&apos;文章标题&apos;])
+df = df.fillna(method=&amp;quot;pad&amp;quot;).dropna().set_index([&apos;文章标题&apos;]).groupby(lambda x: x[:2]).apply(lambda x: x.apply(
+    lambda y: {1: lambda z: reduce(lcs, z), 2: lambda z: z[-1], None: lambda z: z.groupby(type).sum().values[0]}
+    [{&apos;标题&apos;: 1, &apos;日期&apos;: 2, &apos;粉丝数&apos;: 2}.get(y.name)](y))).set_index([&apos;标题&apos;])
+# 下面为上句的另一种表达方式
+# 用fillna填充nan
+# df=df.fillna(method=&amp;quot;pad&amp;quot;)
+# 将开头未能被pad填充的nan去除
+# df=df.dropna()
+# 将标题设为index以方便分组
+# df=df.set_index([&apos;文章标题&apos;])
+# 以标题的前两个字为基准分组
+# df=df.groupby(lambda x: x[:2])
+# 利用函数t对每个groupBy进行合并
+# df=df.apply(t)
+# 将各系列内文章标题的相同部分作为系列名称
+# df=df.set_index([&apos;标题&apos;])
+
+# 从dataframe中取得之后计算需要的Series
+fields = [df.xs(&apos;总阅读人数&apos;, axis=1), df.xs(&apos;初次打开阅读人数&apos;, axis=1), df.xs(&apos;分享次数&apos;, axis=1), df.xs(&apos;每日增粉人数&apos;, axis=1),
+          df.xs(&apos;粉丝数&apos;, axis=1)]
+to_percent = lambda x: (x * 100).round(1)
+# 各字段计算公式
+expressions = [(&apos;初次打开率&apos;, lambda f: f[1] / f[4]), (&apos;分享率&apos;, lambda f: f[2] / f[0]), (&apos;分享拉粉率&apos;, lambda f: f[3] / f[2]),
+               (&apos;增粉速率&apos;, lambda f: f[3] / f[4]), ( &apos;阅读涨粉率&apos;, lambda f: f[3] / f[0]),
+               (&apos;传播涨粉率&apos;, lambda f: f[3] / (f[0] - f[1])), (&apos;二次传播率&apos;, lambda f: (f[0] - f[1]) / f[0])]
+# 记录现有字段数量，用于下面计算新字段插入位置以及删除旧字段。
+old_field_count = len(df.columns)
+# 计算各字段的值，处理为percent后，依次插入datagrame中
+for i in enumerate(expressions, start=old_field_count):
+    df.insert(i[0], i[1][0], (i[1][1](fields)).apply(to_percent))
+# 转制后将原始字段去除
+df = df.T[old_field_count:]
+
+df.plot(kind=&apos;barh&apos;, figsize=(16, 9))
+
+from pylab import mpl
+mpl.rcParams[&apos;font.sans-serif&apos;] = [&apos;SimHei&apos;]  # 指定默认字体
+mpl.rcParams[&apos;axes.unicode_minus&apos;] = False  # 解决保存图像是负号&apos;-&apos;显示为方块的问题
+plt.show()
+</code></pre><p>[/python]</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/16/java8-lambda-e8-a1-a8-e8-be-be-e5-bc-8f-e4-bd-93-e9-aa-8c/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          java8 lambda表达式体验
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/04/10/python-e5-ae-9e-e7-8e-b0lambda-switch-lambda-e7-bb-93-e6-9e-84-ef-bc-8c-e5-90-91lambda-e5-86-85-e6-8f-92-e5-85-a5-e5-88-86-e6-94-af-e7-bb-93-e6-9e-84/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python实现lambda-switch-lambda结构，向lambda内插入分支结构</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Sail
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

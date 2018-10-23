@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>任意按键实现tab和shift+tab遍历html元素的功能 | Sail的日记本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="初始化：首先遍历所有有tabindex的标签，普通标签直接将tabindex的值存入data-tabindex中。对于第三方库渲染的特殊控件，默认的tabindex是无效的，在default.init中可以配置针对的初始化方法，将tabindex值绑定到真正的标签的data-tabindex属性上。预处理完毕后，选择所有含data-tabindex属性的标签并排序后放入tabList中。此后当事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="任意按键实现tab和shift+tab遍历html元素的功能">
+<meta property="og:url" content="http://woodensail.github.io/2015/04/01/e4-bb-bb-e6-84-8f-e6-8c-89-e9-94-ae-e5-ae-9e-e7-8e-b0tab-e5-92-8cshifttab-e9-81-8d-e5-8e-86html-e5-85-83-e7-b4-a0-e7-9a-84-e5-8a-9f-e8-83-bd/index.html">
+<meta property="og:site_name" content="Sail的日记本">
+<meta property="og:description" content="初始化：首先遍历所有有tabindex的标签，普通标签直接将tabindex的值存入data-tabindex中。对于第三方库渲染的特殊控件，默认的tabindex是无效的，在default.init中可以配置针对的初始化方法，将tabindex值绑定到真正的标签的data-tabindex属性上。预处理完毕后，选择所有含data-tabindex属性的标签并排序后放入tabList中。此后当事件">
+<meta property="og:updated_time" content="2016-05-06T04:16:13.024Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="任意按键实现tab和shift+tab遍历html元素的功能">
+<meta name="twitter:description" content="初始化：首先遍历所有有tabindex的标签，普通标签直接将tabindex的值存入data-tabindex中。对于第三方库渲染的特殊控件，默认的tabindex是无效的，在default.init中可以配置针对的初始化方法，将tabindex值绑定到真正的标签的data-tabindex属性上。预处理完毕后，选择所有含data-tabindex属性的标签并排序后放入tabList中。此后当事件">
+  
+    <link rel="alternative" href="/atom.xml" title="Sail的日记本" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Sail</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JVM/" style="font-size: 12px;">JVM</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/PythonChallenge/" style="font-size: 10px;">PythonChallenge</a> <a href="/tags/bootstrap/" style="font-size: 12px;">bootstrap</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/j2ee/" style="font-size: 10px;">j2ee</a> <a href="/tags/jQuery/" style="font-size: 12px;">jQuery</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaScript/" style="font-size: 14px;">javaScript</a> <a href="/tags/keygen/" style="font-size: 10px;">keygen</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/rsa/" style="font-size: 10px;">rsa</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/数据分析/" style="font-size: 18px;">数据分析</a> <a href="/tags/每日一题/" style="font-size: 14px;">每日一题</a> <a href="/tags/游戏/" style="font-size: 12px;">游戏</a> <a href="/tags/练习/" style="font-size: 16px;">练习</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Sail</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Sail</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-e4-bb-bb-e6-84-8f-e6-8c-89-e9-94-ae-e5-ae-9e-e7-8e-b0tab-e5-92-8cshifttab-e9-81-8d-e5-8e-86html-e5-85-83-e7-b4-a0-e7-9a-84-e5-8a-9f-e8-83-bd" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/01/e4-bb-bb-e6-84-8f-e6-8c-89-e9-94-ae-e5-ae-9e-e7-8e-b0tab-e5-92-8cshifttab-e9-81-8d-e5-8e-86html-e5-85-83-e7-b4-a0-e7-9a-84-e5-8a-9f-e8-83-bd/" class="article-date">
+  	<time datetime="2015-04-01T07:49:49.000Z" itemprop="datePublished">2015-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      任意按键实现tab和shift+tab遍历html元素的功能
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javaScript/">javaScript</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="初始化："><a href="#初始化：" class="headerlink" title="初始化："></a>初始化：</h5><p>首先遍历所有有tabindex的标签，普通标签直接将tabindex的值存入data-tabindex中。对于第三方库渲染的特殊控件，默认的tabindex是无效的，在default.init中可以配置针对的初始化方法，将tabindex值绑定到真正的标签的data-tabindex属性上。<br>预处理完毕后，选择所有含data-tabindex属性的标签并排序后放入tabList中。此后当事件被触发时，事件函数会利用闭包特性取得tabList。<br>最后完成事件绑定，绑定前先解绑一次，以防止重复绑定。<br>&nbsp;</p>
+<h5 id="事件响应："><a href="#事件响应：" class="headerlink" title="事件响应："></a>事件响应：</h5><p>触发事件后依次通过判断keyCode是否在forwardKey和backwardKey中来决定是否需要后移或前移。如果需要执行时对于普通标签执行默认的方法，对于包含defaulte.execute中的class的特殊标签则先执行标签中的处理函数，当处理函数返回true时会继续执行默认方法，否则阻止默认方法。</p>
+<h5 id="调用方式："><a href="#调用方式：" class="headerlink" title="调用方式："></a>调用方式：</h5><p>在html中设置tabindex或通过js动态设置tabindex后，执行$.extendTab()即可。<br>$.extendTab.default定义了特殊控件处理方式及需要响应的按键，可以通过$.extend修改<br>[javascript]<br>(function ($) {<br>    $.extendTab = function (i18nData) {<br>        $(‘[tabindex]’).each(function (i, v) {<br>            var _this = $(v);<br>            var flag = true;<br>            $.each($.extendTab.default.init, function (key, value) {<br>                if (_this.hasClass(key)) {<br>                    value(_this);<br>                    flag = false;<br>                    return false;<br>                }<br>            });<br>            if (flag) {<br>                _this.attr(‘data-tabindex’, _this.attr(‘tabindex’));<br>            }<br>        });<br>        var tabList = $(‘[data-tabindex]’).sort(function (a, b) {<br>            return $(a).data(‘tabindex’) &gt; $(b).data(‘tabindex’)<br>        });<br>        tabList.off(‘keydown.extendTab’);<br>        tabList.on(‘keydown.extendTab’, function (e) {<br>            var target = $(e.currentTarget);<br>            if ($.extendTab.default.forwardKey.contains(e.keyCode)) {<br>                var flag = true;<br>                $.each($.extendTab.default.execute, function (key, value) {<br>                    if (target.hasClass(key)) {<br>                        flag = value(target);<br>                        return false;<br>                    }<br>                });<br>                if (flag) {<br>                    var _idx = tabList.index(this) + 1;<br>                    tabList.eq(_idx &gt;= (tabList.length) ? 0 : _idx).focus();<br>                    e.preventDefault();<br>                }<br>            } else if ($.extendTab.default.backwardKey.contains(e.keyCode)) {<br>                var flag = true;<br>                $.each($.extendTab.default.execute, function (key, value) {<br>                    if (target.hasClass(key)) {<br>                        flag = value(target);<br>                        return false;<br>                    }<br>                });<br>                if (flag) {<br>                    tabList.eq(tabList.index(this) - 1).focus();<br>                    e.preventDefault();<br>                }<br>            }<br>        });<br>    };</p>
+<pre><code>$.extendTab.default = {
+    init       : {
+        &apos;combo-f&apos;: function (jq) {
+            jq.next().find(&apos;.combo-text&apos;).attr(&apos;data-tabindex&apos;, jq.attr(&apos;tabindex&apos;));
+        }
+    },
+    execute    : {
+        &apos;combo-text&apos;: function (jq) {
+            clearTimeout(jq.parent().prev().data(&apos;combo&apos;).timer);
+            return true;
+        }
+    },
+    forwardKey : [39, 13],
+    backwardKey: [37]
+}
+</code></pre><p>})(jQuery);<br>[/javascript]<br><a href="https://github.com/woodensail/extendTab" target="_blank" rel="external">https://github.com/woodensail/extendTab</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/07/e6-95-b0-e6-8d-ae-e5-88-86-e6-9e-90s104-ef-bc-9a-e5-88-86-e6-9e-90-e7-94-a8-e6-88-b7-e5-8f-91-e8-a8-80-e5-9c-a8-e6-af-8f-e5-b0-8f-e6-97-b6-e6-af-8f-e5-a4-a9-e7-ad-89-e7-b2-92-e5-ba-a6-e4-b8-8a/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          数据分析S104：分析用户发言在每小时每天等粒度上的分布
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/31/e6-95-b0-e6-8d-ae-e5-88-86-e6-9e-90s103-ef-bc-9a-e4-bd-bf-e7-94-a8-e7-bb-93-e5-b7-b4-e5-88-86-e8-af-8d-e5-b7-a5-e5-85-b7-e6-8f-90-e5-8f-96-e5-85-b3-e9-94-ae-e8-af-8d/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据分析S103：使用结巴分词工具提取关键词</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Sail
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

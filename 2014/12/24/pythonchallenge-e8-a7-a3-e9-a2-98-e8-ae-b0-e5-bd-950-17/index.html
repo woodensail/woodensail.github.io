@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>PythonChallenge解题记录(0-17) | Sail的日记本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="群里的每日一题计划似乎进行了没几次就被群主遗忘了，我在闲极无聊之下找到了PythonChallenge。pc的玩法基本上就是根据每一关的提示找出下一关的密码，和闯关游戏类似。不过pc的特点是解析下一关地址的过程极其复杂，无法人工完成，只能借助计算机编程实现。pc主要涉及了网络爬虫，图像处理和文件操作，虽说没有涉及python高级技巧，但是对于python的常用功能也算是基本都覆盖到了，因此非常适合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PythonChallenge解题记录(0-17)">
+<meta property="og:url" content="http://woodensail.github.io/2014/12/24/pythonchallenge-e8-a7-a3-e9-a2-98-e8-ae-b0-e5-bd-950-17/index.html">
+<meta property="og:site_name" content="Sail的日记本">
+<meta property="og:description" content="群里的每日一题计划似乎进行了没几次就被群主遗忘了，我在闲极无聊之下找到了PythonChallenge。pc的玩法基本上就是根据每一关的提示找出下一关的密码，和闯关游戏类似。不过pc的特点是解析下一关地址的过程极其复杂，无法人工完成，只能借助计算机编程实现。pc主要涉及了网络爬虫，图像处理和文件操作，虽说没有涉及python高级技巧，但是对于python的常用功能也算是基本都覆盖到了，因此非常适合">
+<meta property="og:updated_time" content="2016-05-06T04:16:13.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PythonChallenge解题记录(0-17)">
+<meta name="twitter:description" content="群里的每日一题计划似乎进行了没几次就被群主遗忘了，我在闲极无聊之下找到了PythonChallenge。pc的玩法基本上就是根据每一关的提示找出下一关的密码，和闯关游戏类似。不过pc的特点是解析下一关地址的过程极其复杂，无法人工完成，只能借助计算机编程实现。pc主要涉及了网络爬虫，图像处理和文件操作，虽说没有涉及python高级技巧，但是对于python的常用功能也算是基本都覆盖到了，因此非常适合">
+  
+    <link rel="alternative" href="/atom.xml" title="Sail的日记本" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Sail</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JVM/" style="font-size: 12px;">JVM</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/PythonChallenge/" style="font-size: 10px;">PythonChallenge</a> <a href="/tags/bootstrap/" style="font-size: 12px;">bootstrap</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/j2ee/" style="font-size: 10px;">j2ee</a> <a href="/tags/jQuery/" style="font-size: 12px;">jQuery</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaScript/" style="font-size: 14px;">javaScript</a> <a href="/tags/keygen/" style="font-size: 10px;">keygen</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/rsa/" style="font-size: 10px;">rsa</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/数据分析/" style="font-size: 18px;">数据分析</a> <a href="/tags/每日一题/" style="font-size: 14px;">每日一题</a> <a href="/tags/游戏/" style="font-size: 12px;">游戏</a> <a href="/tags/练习/" style="font-size: 16px;">练习</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Sail</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Sail</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-pythonchallenge-e8-a7-a3-e9-a2-98-e8-ae-b0-e5-bd-950-17" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/24/pythonchallenge-e8-a7-a3-e9-a2-98-e8-ae-b0-e5-bd-950-17/" class="article-date">
+  	<time datetime="2014-12-24T02:15:11.000Z" itemprop="datePublished">2014-12-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PythonChallenge解题记录(0-17)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PythonChallenge/">PythonChallenge</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/练习/">练习</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/python/">python</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>群里的每日一题计划似乎进行了没几次就被群主遗忘了，我在闲极无聊之下找到了PythonChallenge。pc的玩法基本上就是根据每一关的提示找出下一关的密码，和闯关游戏类似。不过pc的特点是解析下一关地址的过程极其复杂，无法人工完成，只能借助计算机编程实现。pc主要涉及了网络爬虫，图像处理和文件操作，虽说没有涉及python高级技巧，但是对于python的常用功能也算是基本都覆盖到了，因此非常适合新手在缺少练手机会是拿来熟练python。最后，我的解题过程基本上市先看网上的攻略找到题目中谜题的含义，然后自己编写代码来解题，我建议大家尽量也采用这种方法，可以减少在谜面上浪费的脑细胞。</p>
+<p><strong>0</strong><br><a href="http://www.pythonchallenge.com/pc/def/0.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/0.html</a><br>根据提示2^38得到274877906944<br>[python]<br>2 ** 38<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/def/274877906944.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/274877906944.html</a></p>
+<p><strong>1</strong><br><a href="http://www.pythonchallenge.com/pc/def/map.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/map.html</a><br>页面包含一段乱码：g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr’q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj.<br>文字提示：everybody thinks twice before solving this.<br>图片提示：k-&gt;m,o-&gt;q,e-&gt;g<br>根据图片提示得出是凯撒密码，将字母后移两位得到”i hope you didnt translate it by hand. thats what computers are for. doing it in by hand is inefficient and that’s why this text is so long. using string. maketrans() is recommended. now apply on the url.”<br>用同样的方式处理url”map”得到”ocr”<br>此处使用正则表达式匹配所有字母以避免影响到其他字符，匹配成功后使用lambda表达式完成字符替换<br>[python]<br> re.compile(‘[a-z]’).sub(lambda m: chr((ord(m.group(0)) - 97 + 2) % 26 + 97), hint)<br> re.compile(‘[a-z]’).sub(lambda m: chr((ord(m.group(0)) - 97 + 2) % 26 + 97), ‘map’)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/def/ocr.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/ocr.html</a></p>
+<p><strong>2</strong><br><a href="http://www.pythonchallenge.com/pc/def/ocr.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/ocr.html</a><br>根据提示在源代码中找到需要统计的字符串，统计完成后获得出现最少的次数min_times，筛选出所有出现次数为mint_times的字符拼接后得到equality<br>[python]<br>for i in level2_str:<br>    if None == count.get(i):<br>        count[i] = 1<br>        char.append(i)<br>    else:<br>        count[i] += 1<br>min_times = min(count.items(), key=lambda x: x[1])[1]<br>char = filter(lambda x: min_times == count[x], char)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/def/equality.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/equality.html</a></p>
+<p><strong>3</strong><br><a href="http://www.pythonchallenge.com/pc/def/equality.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/equality.html</a><br>老样子在源代码中找到字符串，然后正则匹配出左右刚好各有三个大写字母的小写字母，最后拼接得到linkedlist<br>[python]<br>re.compile(‘[a-z][A-Z]{3}([a-z])[A-Z]{3}[a-z]’).findall(level3_str)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/def/linkedlist.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/linkedlist.html</a></p>
+<p><strong>4</strong><br><a href="http://www.pythonchallenge.com/pc/def/linkedlist.php" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/linkedlist.php</a><br>根据页面提示打开下一个页面，只不过这关页面太多，必须要借助爬虫才行。<br>需要注意的是这关有两处陷阱，第一处提示”Yes. Divide by two and keep going.”，需要将之前的数字直接除二得到下一个页面。第二处在中间有一个假数字，会导向一个错误页面。<br>[python]<br>pattern = ‘(?&lt;=[^0-9])\d+$’ pattern = ‘(?&lt;=[^0-9])\d+$’<br>while 1:<br>        page = request.urlopen(base + nothing).read().decode()<br>        match = re.search(pattern, page)<br>        if not match:<br>            if ‘Yes. Divide by two and keep going.’ == page:<br>                nothing = str(int(nothing) / 2)<br>            else:<br>                break<br>        else:<br>            nothing = match.group(0)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/def/peak.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/peak.html</a></p>
+<p><strong>5</strong><br><a href="http://www.pythonchallenge.com/pc/def/peak.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/peak.html</a><br>这一关涉及到利用pickle模块进行反序列化，爬取banner.p，然后反序列化可以得到类似[[(‘ ‘, 95)], [(‘ ‘, 14), (‘#’, 5), (‘ ‘, 70), (‘#’, 5), (‘ ‘, 1)]……]的数据，列表解析后输出可以得到用井号和空格拼成的channel单词<br>[python]<br>banner = pickle.load(request.urlopen(‘<a href="http://www.pythonchallenge.com/pc/def/banner.p" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/banner.p</a>‘))<br>return ‘’.join(‘’.join([pair[0] * pair[1] for pair in line]) + ‘\n’ for line in banner)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/def/channel.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/channel.html</a></p>
+<p><strong>6</strong><br><a href="http://www.pythonchallenge.com/pc/def/channel.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/channel.html</a><br>这关和第4关类似，也是循环读取，只不过这回变成了读取压缩文件。按第四关的方法读到最后提示需要压缩文件的注释，于是把所有注释拼接起来就可以得到类似上一关的字符画，内容为hockey。进入hockey.html后提示”it’s in the air. look at the letters. “，观察组成字符画所用的字母分别是o,x,y,g,e,n。于是输入oxygen.html，成功到达下一关。<br>[python]</p>
+<h1 id="只展示与第4关不同的部分"><a href="#只展示与第4关不同的部分" class="headerlink" title="只展示与第4关不同的部分"></a>只展示与第4关不同的部分</h1><p>channel = zipfile.ZipFile(‘channel.zip’)<br>comments.append(channel.getinfo(nothing+’.txt’).comment.decode())<br>channel.read(nothing+’.txt’).decode()<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/def/oxygen.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/oxygen.html</a></p>
+<p><strong>7</strong><br>这一关用到了图像处理，需要借助pillow库完成。<br>图片中央有一条灰阶，读取灰阶中每一格的RGB任一通道值，得到数字，转化为字符串后可以得到下一关的提示。再用正则将提示中的数字取出后再次转化就可以得到下一关的地址integrity。<br><a href="http://www.pythonchallenge.com/pc/def/oxygen.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/oxygen.html</a><br>[python]<br>img = Image.open(‘oxygen.png’)<br>hint = ‘’.join([chr(img.getpixel((i, 50))[0]) for i in range(0, 609, 7)])<br>return ‘’.join([chr(int(i)) for i in re.findall(‘\d+’, hint)])<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/def/integrity.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/integrity.html</a></p>
+<p><strong>8</strong><br>这一关是用bz2解压缩，在源代码中有两个字符串，分别解压后得到’huge’和’file’，点击蜜蜂提示输入账号密码，将量单词分别输入跳转至下一个页面。<br><a href="http://www.pythonchallenge.com/pc/def/integrity.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/integrity.html</a><br>[python]<br>bz2.decompress(un).decode()<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/good.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/good.html</a></p>
+<p><strong>9</strong><br>这题搞得跟脑筋急转弯似的，但仍然是图像处理。源代码中有两个数组first和second，分别将其中的数字两两一组做为坐标在图上画点。完成后可以得到两幅画，分别是牛的侧身和牛头，所以答案是bull。<br><a href="http://www.pythonchallenge.com/pc/return/good.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/good.html</a><br>[python]<br>im = Image.new(&quot;RGB&quot;, (500, 500))<br>    for i in range(0, len(level9_first), 2):<br>        im.putpixel((level9_first[i], level9_first[i + 1]), (255, 255, 255))<br>    im.save(‘level9_1.png’)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/bull.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/bull.html</a></p>
+<p><strong>10</strong><br>找规律的脑筋急转弯：<br>1 = 1个1 = 11<br>11 = 2个1 = 21<br>21 = 1个2加1个1 = 1211<br>依次类推。<br>我采用正则表达式的方式对数字进行分组，如将111221拆分为[111,22,1]。然后用列表解析的方式生成下一个数，[111,22,1]将被解析为[31,22,11],最后用join合并后进行下一轮处理。最后得到第31个数长度为5808<br><a href="http://www.pythonchallenge.com/pc/return/bull.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/bull.html</a><br>[python]<br>num = ‘1’<br>for i in range(0, 30):<br>num = ‘’.join([str(len(x[1]) + 1) + x[0] for x in re.findall(r’(\d)(\1*)’, num)])<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/5808.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/5808.html</a></p>
+<p><strong>11</strong><br>还是图像处理，这次是将原图中所有xy坐标都为奇数和都为偶数的点取出生成单独的图片，生成完后可以明显的看到右上角有evil字样。<br><a href="http://www.pythonchallenge.com/pc/return/5808.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/5808.html</a><br>[python]<br>im = Image.open(‘cave.jpg’)<br>x, y = im.size<br>im_new = Image.new(im.mode, (int(x / 2), int(y / 2)))<br>for i in range(0, x, 2):<br>    for j in range(0, y, 2):<br>        im_new.putpixel((int(i / 2), int(j / 2)), im.getpixel((i, j)))<br>im_new.save(‘level11_1.jpg’)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/evil.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/evil.html</a></p>
+<p><strong>12</strong><br>又是一道脑筋急转弯的题。第一页中图名字是evil1.jpg，修改为evil2.jpg后看到提示将后缀名修改为gfx。修改完后成功下载evil2.gfx文件。另外根据evil1中分牌的提示可知需要将文件按分牌方式分成五份。我使用的方式是先将文件全部读出然后列表解析生成5个子bytes，最后写入新文件。写入完成后看图可知下一关地址为disproportional<br>lenge.com/pc/return/evil.html<br>[python]<br>source = bytearray(file.read())<br>s1 = bytes([source[i] for i in range(0, len(source), 5)])<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/disproportional.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/disproportional.html</a></p>
+<p><strong>13</strong><br>页面提示”phone that evil”于是在图片中的电话上按键，按到e所在的5键时跳转到了phonebook.php，内容是一个报错的xml。查了一下这里是用到了xml远程调用，需要导入xmlrpc，用xmlrpc连接上phonebook.php后调用listMethods发现有一个phone方法。于是调用phone(‘evil’)，提示”He is not the evil”。再上网查了一下发现上一关中evil4.jpg有提示”Bert is evil”，于是phone(‘Bert’)，返回555-ITALY，下一关为italy<br><a href="http://www.pythonchallenge.com/pc/return/disproportional.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/disproportional.html</a><br>[python]<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/italy.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/italy.html</a></p>
+<p><strong>14</strong><br>根据图片和源代码中的”100<em>100 = (100+99+99+98) + (…”提示，可知需要将下方10000</em>1的图从外向里盘绕形成一个100<em>100的新图片。按要求生成图片后结果是一只猫，进入cat.html提示”and its name is uzi. you’ll hear from him later.”。下一关地址为uzi<br><a href="http://www.pythonchallenge.com/pc/return/italy.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/italy.html</a><br>[python]<br>im = Image.open(‘pc/wire.png’)<br>im_new = Image.new(im.mode, (100, 100))<br>count = 0<br>for i in range(0, 50):<br>    jump = 99 - 2 </em> i<br>    for j in range(i, 99 - i):<br>        im_new.putpixel((j, i), im.getpixel((count, 0)))<br>        im_new.putpixel((99 - i, j), im.getpixel((count + jump, 0)))<br>        im_new.putpixel((99 - j, 99 - i), im.getpixel((count + 2 <em> jump, 0)))<br>        im_new.putpixel((i, 99 - j), im.getpixel((count + 3 </em> jump, 0)))<br>        count += 1<br>    count += jump * 3<br>im_new.save(&quot;pc/level14.jpg&quot;)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/uzi.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/uzi.html</a></p>
+<p><strong>15</strong><br>日历显示为1xx6年1月26日周一，且右下角显示二月有29天为闰年，找出所有符合该条件的日期，分别为1176，1356，1576，1756，1976年的1月26日。然后根据源文件中的提示”he ain’t the youngest, he is the second. buy flowers for tomorrow”。5个年份中第二靠后的是1756，搜索1756年1月27日为莫扎特的生日，符合所有提示。所以，下一关地址为mozart<br><a href="http://www.pythonchallenge.com/pc/return/uzi.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/uzi.html</a><br>[python]<br>for year in range(1016, 2000, 20):<br>    t = date(year, 1, 26)<br>    if (t+timedelta(34)).month == 2 and t.weekday() == 0:<br>        print(t.isoformat())<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/mozart.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/mozart.html</a></p>
+<p><strong>16</strong><br>依旧是图像处理，干脆改名叫image challenge得了……这题是根据图片中的红色线段对齐每一行像素，对齐完后得到的图中有romance字样。<br><a href="http://www.pythonchallenge.com/pc/return/mozart.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/mozart.html</a><br>[python]<br>for i in range(0, 480):<br>    flag = 0<br>    for j in range(0, 640):<br>        if 195 == im.getpixel((j, i)):<br>            flag += 1<br>        if 5 == flag:<br>            flag = j<br>            break<br>    for j in range(0, 640):<br>        im_new.putpixel(((j - flag) % 640, i), im.getpixel((j, i)))<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/romance.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/romance.html</a></p>
+<p><strong>17</strong><br>这一关算是一个总结，涉及了前面关卡中出图像处理外的大部分内容，同时加入了cookie的处理，而且猜谜性质更加突出了。为了完成这一关在网上差了不少的资料，总算是勉强完成了。<br>这一关的主图是一堆饼干，暗示的是cookie，而左下角的小图是第四关的图片，于是进入第四关,发现第四关的cookie中有提示：”info=you+should+have+followed+busynothing…”。尝试将用busynothing替换nothing，结果可行。接下来按照第四关的方式迭代，不过迭代的过程中需要收集cookie信息，每个网页都带有一字节的信息，将这些信息提取出来并且拼接得到一个bytes类型，开头是b’BZh91AY&amp;SY’,一看就是第8关的内容bz2，用bz2解压后得到’is it the 26th already? call his father and inform him that “the flowers are on their way”. he’ll understand.’。顺便一说，在’linkedlist.php?busynothing=19242’中cookie为’+’,但实际上应该是空格，我不清楚到底是官方出错还是有什么其他的我没发现的暗示，但是我在这上面几乎浪费了一上午的时间，最后选择了当busynothing为19242时手动替换结果，才算是成功解压出信息。<br>言归正传，上面的提示可以看出跟之前的莫扎特有关，上网查莫扎特的父亲名字是’Leopold Mozart’。接下来用第13关的方法phone(‘Leopold’),结果是’no! i mean yes! but ../stuff/violin.php.’，进入该页面后有一张莫扎特的照片，页面标题是’it’s me. what do you want?’，总算是找到莫扎特了……接下来通过cookie给莫扎特鲜花，也就是请求时在cookie中带上’the flowers are on their way’的信息，得到结果’oh well, don\’t you dare to forget the balloons.’其中balloons就是下一关的地址<br><a href="http://www.pythonchallenge.com/pc/return/romance.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/romance.html</a><br>[python]<br>page = ‘’<br>base = ‘<a href="http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing=" target="_blank" rel="external">http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing=</a>‘<br>nothing = ‘12345’<br>pattern = ‘(?&lt;=[^0-9])\d+$’<br>cookies = []<br>while 1:<br>    while 1:<br>        try:<br>            page = request.urlopen(base + nothing, timeout=1)<br>            break<br>        except:<br>            pass<br>    data = page.read().decode()<br>    match = re.search(pattern, data)<br>    cookie = page.info().get(&quot;Set-Cookie&quot;)<br>    cookies.append(parse.unquote_to_bytes(re.search(&quot;(?&lt;==)[^;]+(?=;)&quot;, cookie).group(0)))<br>    if ‘19242’ == nothing:<br>        cookies.pop()<br>        cookies.append(b’ ‘)<br>    if not match:<br>        if ‘Yes. Divide by two and keep going.’ == page:<br>            nothing = str(int(nothing) / 2)<br>        else:<br>            break<br>    else:<br>        nothing = match.group(0)</p>
+<p>data = bz2.decompress(b’’.join(cookies))<br>server = client.Server(&quot;<a href="http://www.pythonchallenge.com/pc/phonebook.php&amp;quot" target="_blank" rel="external">http://www.pythonchallenge.com/pc/phonebook.php&amp;quot</a>;)<br>server.phone(‘Leopold’)<br>http = urllib3.PoolManager().request(‘GET’, ‘<a href="http://www.pythonchallenge.com/pc/stuff/violin.php" target="_blank" rel="external">http://www.pythonchallenge.com/pc/stuff/violin.php</a>‘,<br>                                     headers={‘Cookie’: &quot;info=the flowers are on their way&quot;})<br>print(http.data)<br>[/python]<br>下一关地址：<a href="http://www.pythonchallenge.com/pc/return/balloons.html" target="_blank" rel="external">http://www.pythonchallenge.com/pc/return/balloons.html</a></p>
+<p>PythonChallenge做到这里也算是告一段落了，后面还有十多关没做，不过接下来这段时间会很忙，所以只能找机会慢慢完成了。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/06/easyui-window-e7-bb-84-e4-bb-b6-e4-b8-ad-e5-8c-85-e5-90-abiframe-e5-8f-af-e8-83-bd-e5-bc-95-e5-8f-91-e9-87-8d-e5-a4-8d-e8-af-b7-e6-b1-82-e5-92-8cjquery-e5-bc-82-e5-b8-b8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          EasyUI-window组件中包含iframe可能引发重复请求和jquery异常
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/15/e3-80-90-e6-88-91-e4-bb-ac-e4-b8-80-e8-b5-b7-e5-ad-a6python-e5-90-a7-e3-80-91-e6-af-8f-e6-97-a5-e4-b8-80-e9-a2-98-e7-ac-ac4-e6-9c-9f/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python每日一题 第4期</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Sail
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

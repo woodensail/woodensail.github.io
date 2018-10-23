@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>提取并修改class文件中的字符串常量 | Sail的日记本</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这两天在网上看到某个汉化组在汉化jar包过程中遇到开发者加扰，将部分class采取超长命名以及相同名称不同大小写的方式，导致windows下无法解压缩且专用汉化工具无法支持的情况。
+所以我就做了脚本，用于将指定jar包或zip文件里所有class文件中的字符串常量提取出来，以JSON格式存入txt文件中。修改该文件中字符串的值，然后在利用该脚本重新导入，即可完成对jar包中class文件字符串常量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提取并修改class文件中的字符串常量">
+<meta property="og:url" content="http://woodensail.github.io/2015/02/07/e6-8f-90-e5-8f-96-e5-b9-b6-e4-bf-ae-e6-94-b9class-e6-96-87-e4-bb-b6-e4-b8-ad-e7-9a-84-e5-ad-97-e7-ac-a6-e4-b8-b2-e5-b8-b8-e9-87-8f/index.html">
+<meta property="og:site_name" content="Sail的日记本">
+<meta property="og:description" content="这两天在网上看到某个汉化组在汉化jar包过程中遇到开发者加扰，将部分class采取超长命名以及相同名称不同大小写的方式，导致windows下无法解压缩且专用汉化工具无法支持的情况。
+所以我就做了脚本，用于将指定jar包或zip文件里所有class文件中的字符串常量提取出来，以JSON格式存入txt文件中。修改该文件中字符串的值，然后在利用该脚本重新导入，即可完成对jar包中class文件字符串常量">
+<meta property="og:updated_time" content="2016-05-06T04:16:13.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="提取并修改class文件中的字符串常量">
+<meta name="twitter:description" content="这两天在网上看到某个汉化组在汉化jar包过程中遇到开发者加扰，将部分class采取超长命名以及相同名称不同大小写的方式，导致windows下无法解压缩且专用汉化工具无法支持的情况。
+所以我就做了脚本，用于将指定jar包或zip文件里所有class文件中的字符串常量提取出来，以JSON格式存入txt文件中。修改该文件中字符串的值，然后在利用该脚本重新导入，即可完成对jar包中class文件字符串常量">
+  
+    <link rel="alternative" href="/atom.xml" title="Sail的日记本" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Sail</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/JVM/" style="font-size: 12px;">JVM</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/PythonChallenge/" style="font-size: 10px;">PythonChallenge</a> <a href="/tags/bootstrap/" style="font-size: 12px;">bootstrap</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/j2ee/" style="font-size: 10px;">j2ee</a> <a href="/tags/jQuery/" style="font-size: 12px;">jQuery</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/javaScript/" style="font-size: 14px;">javaScript</a> <a href="/tags/keygen/" style="font-size: 10px;">keygen</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/rsa/" style="font-size: 10px;">rsa</a> <a href="/tags/加密/" style="font-size: 10px;">加密</a> <a href="/tags/数据分析/" style="font-size: 18px;">数据分析</a> <a href="/tags/每日一题/" style="font-size: 14px;">每日一题</a> <a href="/tags/游戏/" style="font-size: 12px;">游戏</a> <a href="/tags/练习/" style="font-size: 16px;">练习</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Sail</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Sail</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/woodensail" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-e6-8f-90-e5-8f-96-e5-b9-b6-e4-bf-ae-e6-94-b9class-e6-96-87-e4-bb-b6-e4-b8-ad-e7-9a-84-e5-ad-97-e7-ac-a6-e4-b8-b2-e5-b8-b8-e9-87-8f" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/07/e6-8f-90-e5-8f-96-e5-b9-b6-e4-bf-ae-e6-94-b9class-e6-96-87-e4-bb-b6-e4-b8-ad-e7-9a-84-e5-ad-97-e7-ac-a6-e4-b8-b2-e5-b8-b8-e9-87-8f/" class="article-date">
+  	<time datetime="2015-02-07T07:37:51.000Z" itemprop="datePublished">2015-02-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      提取并修改class文件中的字符串常量
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/未分类/">未分类</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这两天在网上看到某个汉化组在汉化jar包过程中遇到开发者加扰，将部分class采取超长命名以及相同名称不同大小写的方式，导致windows下无法解压缩且专用汉化工具无法支持的情况。</p>
+<p>所以我就做了脚本，用于将指定jar包或zip文件里所有class文件中的字符串常量提取出来，以JSON格式存入txt文件中。修改该文件中字符串的值，然后在利用该脚本重新导入，即可完成对jar包中class文件字符串常量的修改。</p>
+<p>&nbsp;</p>
+<p>脚本通过zipfile库遍历jar包读取所有class文件并解析，class文件解析的原理在我之前转载的「Class文件内容及常量池」中。之后通过json库保存信息。</p>
+<p>汉化完成后再将汉化信息以json格式读入，并根据文件名已经常量编号对原字符串常量进行替换。</p>
+<p>&nbsp;</p>
+<p>项目地址：<a href="https://github.com/woodensail/ExtractString" target="_blank" rel="external">https://github.com/woodensail/ExtractString</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/11/easyui-validatebox-e7-9a-84-e7-ac-ac-e4-b8-89-e7-a7-8d-e6-8c-87-e5-ae-9avalidtype-e6-96-b9-e5-bc-8f-e6-97-a0-e6-95-88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          easyui较低版本中validType无法接收对象参数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/07/76/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Class文件内容及常量池</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Sail
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
